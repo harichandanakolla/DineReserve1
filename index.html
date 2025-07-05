@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Booking</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Reserve Your Table</h1>
+    <div class="step-indicator" id="stepIndicator">Step 1 of 10</div>
+
+    <form class="booking-form" id="bookingForm">
+      <!-- Step 1: City -->
+      <div class="form-group step" id="step1">
+        <label for="city"><i class='fa-solid fa-location-dot icon'></i> Select City:</label>
+        <select id="city" required>
+          <option value="">-- Select City --</option>
+          <option value="Guntur">Guntur</option>
+          <option value="Vijayawada">Vijayawada</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+        <button type="button" onclick="nextStep(1)">Next</button>
+      </div>
+
+      <!-- Step 2: Area -->
+      <div class="form-group step hidden" id="step2">
+        <label for="area"><i class='fa-solid fa-map icon'></i> Select Area:</label>
+        <select id="area" required>
+          <option value="">-- Select Area --</option>
+          <option value="Downtown">Downtown</option>
+          <option value="Uptown">Uptown</option>
+          <option value="Suburbs">Suburbs</option>
+        </select>
+        <button type="button" onclick="nextStep(2)">Next</button>
+      </div>
+
+      <!-- Step 3: Restaurant -->
+      <div class="form-group step hidden" id="step3">
+        <label for="restaurant"><i class='fa-solid fa-utensils icon'></i> Choose Restaurant:</label>
+        <select id="restaurant" required>
+          <option value="">-- Select --</option>
+          <option value="Spice Garden">Spice Garden</option>
+          <option value="Ocean Breeze">Ocean Breeze</option>
+          <option value="Green Leaf Café">Green Leaf Café</option>
+        </select>
+        <button type="button" onclick="nextStep(3)">Next</button>
+      </div>
+
+      <!-- Step 4: Dining Area -->
+      <div class="form-group step hidden" id="step4">
+        <label for="diningArea"><i class='fa-solid fa-chair icon'></i> Select Dining Area:</label>
+        <select id="diningArea" required>
+          <option value="">-- Select --</option>
+          <option value="Indoor">Indoor</option>
+          <option value="Outdoor">Outdoor</option>
+          <option value="Rooftop">Rooftop</option>
+          <option value="City View">City View</option>
+          <option value="Balcony">Balcony</option>
+          <option value="Pool Side">Pool Side</option>
+        </select>
+        <button type="button" onclick="nextStep(4)">Next</button>
+      </div>
+
+      <!-- Step 5: Date -->
+      <div class="form-group step hidden" id="step5">
+        <label for="date"><i class='fa-solid fa-calendar-days icon'></i> Date:</label>
+        <input type="date" id="date" name="date" required>
+        <button type="button" onclick="nextStep(5)">Next</button>
+      </div>
+
+      <!-- Step 6: Time -->
+      <div class="form-group step hidden" id="step6">
+        <label for="time"><i class='fa-solid fa-clock icon'></i> Time:</label>
+        <input type="time" id="time" name="time" required>
+        <button type="button" onclick="nextStep(6)">Next</button>
+      </div>
+
+      <!-- Step 7: Guests -->
+      <div class="form-group step hidden" id="step7">
+        <label for="guests"><i class='fa-solid fa-user-group icon'></i> Guests:</label>
+        <input type="number" id="guests" name="guests" min="1" max="20" required>
+        <button type="button" onclick="nextStep(7)">Next</button>
+      </div>
+
+      <!-- Step 8: Menu -->
+      <div class="form-group step hidden" id="step8">
+        <label><i class='fa-solid fa-book-open icon'></i> Menu (Select to Preorder):</label>
+        <ul id="menuList"></ul>
+        <button type="button" onclick="nextStep(8)">Next</button>
+      </div>
+
+      <!-- Step 9: Payment -->
+      <div class="form-group step hidden" id="step9">
+        <label><i class='fa-solid fa-credit-card icon'></i> Payment Option:</label>
+        <label><input type="radio" name="payment" value="Pay Now" /> Pay Now</label><br />
+        <label><input type="radio" name="payment" value="Pay at Restaurant" checked /> Pay at Restaurant</label>
+        <button type="button" onclick="nextStep(9)">Next</button>
+      </div>
+
+      <!-- Step 10: Summary -->
+      <div class="form-group step hidden" id="step10">
+        <h3><i class='fa-solid fa-clipboard-list icon'></i> Booking Summary</h3>
+        <div id="bookingSummary"></div>
+        <button type="submit">Confirm Booking</button>
+      </div>
+    </form>
+
+    <div id="confirmation" class="hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
